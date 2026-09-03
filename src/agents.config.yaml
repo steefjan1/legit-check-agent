@@ -1,0 +1,3 @@
+# App-wide defaults for the serverless agents runtime.
+model: $FOUNDRY_MODEL
+timeout: 900
