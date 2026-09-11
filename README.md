@@ -2,7 +2,7 @@
 
 A business-legitimacy chat agent built on [Azure Functions hosted skills](https://learn.microsoft.com/en-us/azure/azure-functions/functions-hosted-skills) (previewed at Build 2026 as the serverless agents runtime). Give it the name or URL of an online business and it assesses how trustworthy it looks: verifiable technical signals gathered in code, one LLM call for the judgment.
 
-Companion sample to the blog post on sjwiggers.com about why this design gathers evidence deterministically instead of letting the model orchestrate tools.
+Companion sample to the blog post [Azure Functions Hosted Skills: I Built a Scam-Checking Agent, Then Removed the Agency](https://dev.to/steefjan_wiggers_34a415b/azure-functions-hosted-skills-i-built-a-scam-checking-agent-then-removed-the-agency-40nj), which tells the story of why this design gathers evidence deterministically instead of letting the model orchestrate tools.
 
 ## What it does
 
