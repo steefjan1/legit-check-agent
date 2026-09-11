@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-label="Serverless agents runtime architecture: version 1 lets the model orchestrate four tools with a growing thread on every round trip; version 2 gathers all evidence in one deterministic tool and makes a single model call." font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="1200" height="640" fill="#ffffff"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0e7490"/>
+    </marker>
+  </defs>
+
+  <!-- panel titles -->
+  <text x="300" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#1f2937">Version 1: model orchestrates</text>
+  <text x="300" y="64" text-anchor="middle" font-size="13" fill="#6b7280">every tool call is a model round trip carrying the whole thread</text>
+  <text x="900" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#1f2937">Version 2: code orchestrates</text>
+  <text x="900" y="64" text-anchor="middle" font-size="13" fill="#6b7280">evidence in code, judgment in the model</text>
+
+  <line x1="600" y1="30" x2="600" y2="610" stroke="#e5e7eb" stroke-width="2"/>
+
+  <!-- ================= V1 (left) ================= -->
+  <!-- user -->
+  <rect x="45" y="120" width="120" height="44" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="105" y="147" text-anchor="middle" font-size="13" fill="#1f2937">User</text>
+  <line x1="165" y1="142" x2="215" y2="142" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="190" y="132" text-anchor="middle" font-size="11" fill="#6b7280">ask</text>
+
+  <!-- model -->
+  <rect x="215" y="100" width="150" height="84" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="290" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Model</text>
+  <text x="290" y="152" text-anchor="middle" font-size="11" fill="#6b7280">picks the next tool</text>
+  <text x="290" y="168" text-anchor="middle" font-size="11" fill="#6b7280">retries on failure</text>
+
+  <!-- four tools -->
+  <g font-size="12" fill="#1f2937">
+    <rect x="440" y="86" width="130" height="34" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+    <text x="505" y="107" text-anchor="middle">check_domain</text>
+    <rect x="440" y="134" width="130" height="34" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+    <text x="505" y="155" text-anchor="middle">check_website</text>
+    <rect x="440" y="182" width="130" height="34" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+    <text x="505" y="203" text-anchor="middle">archive_history</text>
+    <rect x="440" y="230" width="130" height="34" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+    <text x="505" y="251" text-anchor="middle">web_search</text>
+  </g>
+
+  <!-- loop arrows model <-> tools -->
+  <g stroke="#dc2626" stroke-width="1.5" fill="none">
+    <line x1="365" y1="112" x2="436" y2="103" marker-end="url(#arrowRed)"/>
+    <line x1="436" y1="113" x2="365" y2="124" marker-end="url(#arrowRed)"/>
+    <line x1="365" y1="140" x2="436" y2="149" marker-end="url(#arrowRed)"/>
+    <line x1="436" y1="159" x2="365" y2="152" marker-end="url(#arrowRed)"/>
+    <line x1="365" y1="164" x2="436" y2="196" marker-end="url(#arrowRed)"/>
+    <line x1="436" y1="207" x2="365" y2="176" marker-end="url(#arrowRed)"/>
+    <line x1="365" y1="184" x2="436" y2="243" marker-end="url(#arrowRed)"/>
+    <line x1="436" y1="255" x2="365" y2="195" marker-end="url(#arrowRed)"/>
+  </g>
+  <text x="400" y="286" text-anchor="middle" font-size="11" fill="#dc2626">8+ round trips, each carries the full thread</text>
+
+  <!-- growing thread -->
+  <text x="105" y="340" font-size="12" font-weight="700" fill="#1f2937">Thread sent to the model, per round trip</text>
+  <g>
+    <rect x="105" y="356" width="70" height="20" fill="#fecaca" stroke="#dc2626"/>
+    <rect x="105" y="384" width="150" height="20" fill="#fecaca" stroke="#dc2626"/>
+    <rect x="105" y="412" width="240" height="20" fill="#fecaca" stroke="#dc2626"/>
+    <rect x="105" y="440" width="340" height="20" fill="#fecaca" stroke="#dc2626"/>
+    <rect x="105" y="468" width="430" height="20" fill="#fca5a5" stroke="#dc2626" stroke-width="2"/>
+  </g>
+  <text x="185" y="371" font-size="11" fill="#7f1d1d">turn 1</text>
+  <text x="265" y="399" font-size="11" fill="#7f1d1d">+ tool result</text>
+  <text x="355" y="427" font-size="11" fill="#7f1d1d">+ tool result</text>
+  <text x="455" y="455" font-size="11" fill="#7f1d1d">+ retries</text>
+  <text x="105" y="512" font-size="13" font-weight="700" fill="#dc2626">47,004 input tokens for a 280-token answer</text>
+  <text x="105" y="532" font-size="12" fill="#6b7280">rate limits, then context window exceeded</text>
+
+  <!-- ================= V2 (right) ================= -->
+  <!-- user -->
+  <rect x="645" y="120" width="120" height="44" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="705" y="147" text-anchor="middle" font-size="13" fill="#1f2937">User</text>
+  <line x1="765" y1="142" x2="815" y2="142" stroke="#0e7490" stroke-width="2" marker-end="url(#arrowTeal)"/>
+  <text x="790" y="132" text-anchor="middle" font-size="11" fill="#0e7490">ask</text>
+
+  <!-- gather tool (code) -->
+  <rect x="815" y="88" width="330" height="188" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="2"/>
+  <text x="980" y="112" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">gather_business_check  (plain Python)</text>
+  <g font-size="12" fill="#1f2937">
+    <rect x="835" y="126" width="140" height="32" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+    <text x="905" y="146" text-anchor="middle">RDAP domain age</text>
+    <rect x="990" y="126" width="140" height="32" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+    <text x="1060" y="146" text-anchor="middle">HTTPS + trust pages</text>
+    <rect x="835" y="170" width="140" height="32" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+    <text x="905" y="190" text-anchor="middle">Wayback history</text>
+    <rect x="990" y="170" width="140" height="32" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.2"/>
+    <text x="1060" y="190" text-anchor="middle">Review search</text>
+  </g>
+  <text x="980" y="228" text-anchor="middle" font-size="11" fill="#6b7280">each check runs in code; a failure becomes a short</text>
+  <text x="980" y="244" text-anchor="middle" font-size="11" fill="#6b7280">error string, never an exception, never a retry</text>
+  <text x="980" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="#0e7490">called exactly once</text>
+
+  <!-- evidence pack -->
+  <line x1="980" y1="276" x2="980" y2="326" stroke="#0e7490" stroke-width="2" marker-end="url(#arrowTeal)"/>
+  <text x="995" y="306" font-size="11" fill="#0e7490">one result</text>
+  <rect x="855" y="326" width="250" height="46" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="980" y="346" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Evidence pack</text>
+  <text x="980" y="363" text-anchor="middle" font-size="11" fill="#6b7280">hard-capped at 8 KB</text>
+
+  <!-- model -->
+  <line x1="980" y1="372" x2="980" y2="422" stroke="#0e7490" stroke-width="2" marker-end="url(#arrowTeal)"/>
+  <text x="995" y="402" font-size="11" fill="#0e7490">one model call</text>
+  <rect x="855" y="422" width="250" height="62" rx="6" fill="#ecfeff" stroke="#0e7490" stroke-width="2"/>
+  <text x="980" y="448" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Model</text>
+  <text x="980" y="466" text-anchor="middle" font-size="11" fill="#6b7280">weighs signals, writes the assessment</text>
+
+  <!-- verdict -->
+  <line x1="980" y1="484" x2="980" y2="534" stroke="#0e7490" stroke-width="2" marker-end="url(#arrowTeal)"/>
+  <rect x="855" y="534" width="250" height="46" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="980" y="554" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Verdict + 0-100 score</text>
+  <text x="980" y="571" text-anchor="middle" font-size="11" fill="#6b7280">with cited sources</text>
+
+  <text x="900" y="612" text-anchor="middle" font-size="12" font-weight="700" fill="#0e7490">2 model turns per check, bounded input</text>
+  <text x="300" y="612" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">unbounded turns, unbounded input</text>
+</svg>
